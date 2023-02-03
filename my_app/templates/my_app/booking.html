@@ -1,0 +1,11 @@
+{% extends 'my_app/base.html' %}
+{% block content %}
+<div class="booking">
+    <div class="sub-booking">
+        <label for="start"><h5><br><br>Choose a Date:</h5></label><br>
+        <input type="date" min="2023-01-01" max="2024-01-01"  /><br><br><br>
+        <label for="start"><h5>Choose a Time:</h5></label><br>
+        <input type="time" min="09:00" max="17:00"/>
+    </div>
+</div>
+{% endblock %}

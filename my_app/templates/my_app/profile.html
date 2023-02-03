@@ -1,0 +1,27 @@
+{% extends 'my_app/base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static "my_app/new.css" %}" />
+{% endblock %}
+
+{% block content %}
+      <div class="card-body-main">
+        <div class="card-body">
+          <div class="photo">
+            <span class="rounded-circle">{{request.user.pimg}}</span>
+          </div>
+          <div class="about">
+            <h2>Profile</h2>
+            <br />
+            <div>Full Name :</div>
+            <br />
+            <div>Email :</div>
+            <br />
+            <div>Phone no. :</div>
+            <br />
+            <div>Address :</div>
+        
+        </div>
+      </div>
+    </div>
+{% endblock %}

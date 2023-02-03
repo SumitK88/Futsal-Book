@@ -1,0 +1,48 @@
+.rounded-circle {
+    height: 210px;
+    border: 1px solid whitesmoke;
+    border-radius: 65%;
+    margin-left: 15%;
+    /* margin-top:; */
+    /* margin-top: 100 %; */
+    /* align-items: center; */
+}
+
+.photo {
+    margin-top: 17%;
+}
+
+.mt-3 {
+    font-family: sans-serif;
+    font-size: 18px;
+    font-weight: lighter;
+    margin-left: 10%;
+}
+
+.about {
+    margin-left: 20%;
+    margin-top: 5px;
+    font-family: sans-serif;
+}
+
+.card-body {
+    height: 80vh;
+    background: linear-gradient(to right,
+            #c6ebff 0%,
+            #c6ebff 50%,
+            whitesmoke 0%,
+            whitesmoke 0%);
+    /* background-color: rgba(255, 255, 255, 0.3); */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    padding: 20px;
+    /* width: 85%; */
+    width: 600px;
+    height: 450px;
+    /* text-align: center; */
+    font-size: 16px;
+    /* align-items: center; */
+    margin-top: 5%;
+    margin-left: 25%;
+    display: flex;
+}
