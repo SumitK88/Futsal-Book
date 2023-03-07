@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate
-from my_app.models import player
+from my_app.models import player,Booking
 
 class PlayerCreationForm(UserCreationForm):
     class Meta:
@@ -22,3 +22,11 @@ class PlayerLoginForm(forms.ModelForm):
             
             if not authenticate(email=email, password=password):
                 raise forms.ValidationError("INVALID Email or Password")
+            
+class bookingForm(forms.ModelForm):
+    time = forms.TimeField(label="time")
+    date = forms.DateField(label="date")
+    p_name = forms.CharField(max_length=100)
+    class Meta:
+        model=Booking
+        fields=('p_name','date','time')

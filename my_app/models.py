@@ -1,6 +1,6 @@
 from django.db import models
-
 from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
+
 class playerManager(BaseUserManager):
     def create_user(self,email,name,phone,pimg,password=None):
         if not email:
@@ -57,8 +57,10 @@ class player(AbstractBaseUser):
     def has_module_perms(self,app_label):
         return True
         
+class Booking(models.Model):
+    p_name=models.CharField(verbose_name='p_name',max_length=100, blank=True)
+    time=models.TimeField(verbose_name='time', blank=True)
+    date=models.DateField(verbose_name='date', blank=True)
     
-     
-     
-                
-
+    def __str__(self) :
+        return self.p_name

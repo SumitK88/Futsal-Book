@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from my_app.views import register,login_us,logout_us,home,contact_us,review,booking,about_us,profile
+from my_app.views import register,login_us,logout_us,home,contact_us,review,booking,about_us,profile,booking_list
 
 urlpatterns = [
     path('',home,name='home'),
@@ -26,6 +26,7 @@ urlpatterns = [
     path('profile/',profile,name="profile"),
     path('review/',review,name="review"),
     path('booking/',booking,name="booking"),
+    path('booking_list/',booking_list,name="booking_list"),
     path('about_us/',about_us,name="about_us"),
     path('contact_us/',contact_us,name="contact_us"),
 ]

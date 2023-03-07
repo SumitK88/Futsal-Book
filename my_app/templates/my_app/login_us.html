@@ -1,8 +1,12 @@
 {% extends 'my_app/base.html' %}
+{% block head %}
+{%load static%}
+<link rel="stylesheet" href="{% static "my_app/new.css" %}" />
+{% endblock %}
 {% block content %}
 <div class="name"><h3>Log In </h3></div>
-    <div class="container">
-      <div class="contain">
+    <div class="container" style="padding-top:30px;">
+      <div class="contain" style="margin-left:34%;">
         <form action="" method='post'>
             {% csrf_token %}
             <div class="half_form">
@@ -14,6 +18,13 @@
             <br><br>
             <button class="btn btn-primary brn-sucess" style="background-color:skyblue">Log In</button>
         </form>
+      </div>
+      <div style="margin-top:17px;">
+      {%if log_error%}
+          <dailog class="msgbox" style="text-align:center;" > 
+              {{log_error}}
+          </dialog> 
+        {% endif %}
       </div>
     </div>
 {% endblock %}

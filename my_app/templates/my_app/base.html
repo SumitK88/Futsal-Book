@@ -29,7 +29,7 @@
     {% if request.user.name %}
       <nav class="navbar navbar-expand-lg bg-body-tertiary ">
         <div class="container-fluid ">
-          <a class ="navbar-brand logo-main"  aria-current="page"><img src="{% static "ball.jpg" %}" class="logo" /><label class="logoTitle">FUTSAL BOOKING</label></a>
+          <a class ="navbar-brand logo-main"  aria-current="page" href="/home"><img src="{% static "ball.jpg" %}" class="logo" /><label class="logoTitle">FUTSAL BOOKING</label></a>
           <button
             class="navbar-toggler"
             type="button"
@@ -46,9 +46,22 @@
               <a class="nav-link " href="/home" id="home" name="home">Home</a>
               <a class="nav-link" href="/about_us" id="about_us" name="about_us">About Us</a>
               <a class="nav-link" href="/contact_us" id="contact_us" name="contact_us">Contact Us</a>
-              <a class="nav-link" href="/booking" id="booking" name="booking">Book Now</a>
               <a class="nav-link" href="/review" id="review" name="review">Review</a>
-              <a class="nav-link" href="/profile" id="profile" name="profile">{{request.user.name}}</a>
+              <a class="nav-link" href="/booking" id="booking" name="booking">Book Now</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="name">
+                  {{request.user.name}}
+                </a>
+                <ul class="dropdown-menu">
+                  <li></li>
+                    <a class="dropdown-item" href="/profile" id="profile">Profile</a>
+                  </li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <a class="dropdown-item" href="/logout" id="logout">Logout</a>
+                  <li><hr class="dropdown-divider" /></li>
+                  <a class="dropdown-item" href="/booking_list" id="booking_list">My Boookings</a>
+                </ul>
+              </li>
             </div>
           </div>
         </div>
@@ -56,7 +69,7 @@
       {% else %}
       <nav class="navbar navbar-expand-lg bg-body-tertiary ">
         <div class="container-fluid ">
-          <a class ="navbar-brand logo-main"  aria-current="page"><img src="{% static "ball.jpg" %}" class="logo" /><label class="logoTitle">FUTSAL BOOKING</label></a>
+          <a class ="navbar-brand logo-main"  aria-current="page" href="/home"><img src="{% static "ball.jpg" %}" class="logo" /><label class="logoTitle">FUTSAL BOOKING</label></a>
           <button
             class="navbar-toggler"
             type="button"

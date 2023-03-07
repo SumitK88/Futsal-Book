@@ -1,33 +1,47 @@
 {% extends 'my_app/base.html' %}
+{% block head %}
+{%load static%}
+<link rel="stylesheet" href="{% static "my_app/new.css" %}" />
+{% endblock %}
 {% block content %}
 
   <div class="name"><h3>Register</h3></div>
   <div class="container-main">
     <form action="" method="POST">
       {% csrf_token %}
-        <div class="sub-container">
-          <div class="half_form">
-            <label for="fname">Full name:</label><br>
-            {{register_form.name}}
-            <br><br>
-            <label for="phone">Phone no.:</label><br>
-            {{register_form.phone}}
-            <br><br>
-            <label for="fname">Player Image:</label><br>
-            {{register_form.pimg}}
-            <br><br>
+        <div class="sub-container" style="flex-direction: column;">
+          <div clas="cont" style="display: flex; ">
+            <div class="half_form">
+              <label for="fname">Full name:</label><br>
+              {{register_form.name}}
+              <br><br>
+              <label for="phone">Phone no.:</label><br>
+              {{register_form.phone}}
+              <br><br>
+              <label for="fname">Player Image:</label><br>
+              {{register_form.pimg}}
+              <br><br>
+            </div>
+            <div class="half_form_II">
+              <label for="email">Email:</label><br>
+              {{register_form.email}}
+              <br><br>
+              <label for="password1">Password:</label><br>
+              {{register_form.password1}}
+              <br><br>
+              <label for="password2">Confirm Password:</label><br>
+              {{register_form.password2}}
+              <br><br>
+              
+              <button class="btn btn-primary btn-success" style="background-color:skyblue">REGISTER</button>
+            </div>
           </div>
-          <div class="half_form_II">
-            <label for="email">Email:</label><br>
-            {{register_form.email}}
-            <br><br>
-            <label for="password1">Password:</label><br>
-            {{register_form.password1}}
-            <br><br>
-            <label for="password2">Confirm Password:</label><br>
-            {{register_form.password2}}
-            <br><br>
-            <button class="btn btn-primary btn-success" style="background-color:skyblue">REGISTER</button>
+          <div style="margin-left:37.7%; margin-top:20px;">
+          {%if reg_error%}
+          <dailog class="msgbox" style="text-align:center;" > 
+              {{reg_error}}
+          </dialog> 
+          {% endif %}
           </div>
         </div>
     </form>

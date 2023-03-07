@@ -14,23 +14,17 @@ body {
     font-size: 60px;
 }
 
-.navbar-brand {
-    /* margin-right: 50%; */
-}
-
 .navbar-nav {
     width: 80vw;
 }
 
 .navbar {
-    margin-top: 30px;
+    /* margin-top: 30px; */
+    height: 70px;
     display: flex;
-    /* justify-content: space-evenly; */
-    /* margin-left: 10px; */
 }
 
 .navbar-brand {
-    /* color: darkcyan; */
     font-size: 36px;
     font-family: sans-serif, "Times New Roman", Times, serif;
 }
@@ -56,8 +50,9 @@ body {
     height: 380px;
     font-size: 16px;
     margin-top: 3%;
-    margin-left: 25%;
+    margin-left: 33%;
     display: flex;
+
 }
 
 .half_form {
@@ -139,18 +134,14 @@ body {
 }
 .rate:not(:checked) > label {
   float: right;
-  width: 1em; /*star ko part matra aauxa aru hatauxa*/
-overflow: hidden;
+  width: 1em;
+ overflow: hidden;
 white-space: nowrap;
-/*??????????????????????????????????????????????????????????????????????*/
 cursor: pointer;
 font-size: 30px;
 color: white;
-}
-
-*/
-
-/* .rate:not(:checked) > label:before {
+} 
+.rate:not(:checked) > label:before {
   content: "★ ";
 }
 .rate > input:checked ~ label {
@@ -181,14 +172,8 @@ color: white;
     color: darkcyan;
 }
 
-.nav-container {}
-
 .navbar-collapse {
     align-items: center;
-}
-
-.nav-width {
-    /* margin-left: -12vw; */
 }
 
 .title {
@@ -325,11 +310,18 @@ color: white;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
     width: 40vw;
     height: 24vw;
-    margin-top: 2.5%;
+    /* margin-top: 2.5%; */
     /* margin-left: 25%; */
     align-items: center;
     background-color: aliceblue;
     padding-left: 12%;
-    padding-top: 2.5%;
+    padding-top: 1.8%;
+
     border-radius: 10px;
 }
+
+/* .table-contain {
+     display: flex;
+    justify-content: center; 
+    align-items: center; 
+} */
