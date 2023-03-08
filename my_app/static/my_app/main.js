@@ -1,18 +1,20 @@
 
 const date_picker_element = document.querySelector('.date-picker');
 const selected_date_element = document.querySelector('.date-picker .selected-date');
+const selected_time_element = document.querySelector('.time_slot .selected-time');
 const dates_element = document.querySelector('.date-picker .dates');
 const time_picker_element = document.querySelector('.time-picker');
 const mth_element = document.querySelector('.date-picker .dates .month .mth');
 const next_mth_element = document.querySelector('.date-picker .dates .month .next-mth');
 const prev_mth_element = document.querySelector('.date-picker .dates .month .prev-mth');
 const days_element = document.querySelector('.date-picker .dates .days');
-const time_element = document.querySelector('.search_time');
+const s_time_element = document.querySelector('.search_time');
 const times_element = document.querySelector('.time_slot');
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const days_w = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const times = ['09:00', '10:00', '11:00', '12:00', '1:00', '2:00', '3:00']
+
 //Getting Counter for each month
 let cnt_list = document.querySelector('#cnt').innerHTML;
 let num = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], cr = 0, c = [], count = [];
@@ -35,23 +37,39 @@ count.push(c);
 
 //Getting Counter for each day
 let cnt_d_list = document.querySelector('#cnt_d').innerHTML;
-let num_d = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], cr_d = 0, c_d = [], count_d = [];
-for (let i = 0; i < 1141; i++) {
-    let cl_d = cnt_d_list[i];
-    if (cl_d in num) {
-        if (cr_d > 30) {
-            cr_d = cr_d - 31;
-            count.push(c_d);
-            c_d = [];
-            c_d.push(cl_d);
+let n = [0, 1], cr_d = 0, c_d = [], count_d = [], ct_c = 0, c_d_d = [];
+for (let j = 1; j < cnt_d_list.length; j = j + 655) {
+    k = j + 655;
+    let cnt = [];
+    for (i = j; i <= k; i++) {
+        let cl_d = cnt_d_list[i];
+        if (cl_d in n) {
+            if (cr_d > 29) {
+                if (ct_c > 6) {
+                    cr_d = cr_d - 30;
+                    ct_c = ct_c - 7;
+                    c_d.push(c_d_d);
+                    c_d_d = [];
+                    c_d = [];
+                }
+                c_d_d.push(cl_d);
+            }
+            else {
+                if (ct_c > 6) {
+                    ct_c = ct_c - 7;
+                    cr_d++;
+                    c_d.push(c_d_d);
+                    c_d_d = [];
+                }
+                c_d_d.push(cl_d);
+            }
+            ct_c++;
         }
-        else {
-            c_d.push(cl_d);
-        }
-        cr_d++;
     }
-};
-count.push(c_d);
+    count_d.push(c_d);
+}
+console.log(count_d);
+
 
 
 //setting date 
@@ -66,10 +84,12 @@ let selectedDay = day;
 let selectedMonth = month;
 let selectedYear = year;
 let selectedDay_w = day_w;
+let selectedTime = '00:00';
 
 mth_element.textContent = months[month] + ' ' + year;
 
 selected_date_element.textContent = date.toDateString();
+selected_time_element.textContent = selectedTime;
 selected_date_element.dataset.value = selectedDate;
 
 populateDates();
@@ -79,11 +99,12 @@ populateTimes();
 selected_date_element.addEventListener('click', toggleDatePicker);
 next_mth_element.addEventListener('click', goToNextMonth);
 prev_mth_element.addEventListener('click', goToPrevMonth);
-time_element.addEventListener('click', toggleTimePicker);
-time_element.addEventListener('click', toggleDatePicker);
+s_time_element.addEventListener('click', toggleTimePicker);
+s_time_element.addEventListener('click', toggleDatePicker);
 
 // FUNCTIONS
 function toggleTimePicker(e) {
+    selected_time_element.classList.add('sel-time');
     times_element.classList.add('active');
 }
 function toggleDatePicker(e) {
@@ -126,7 +147,6 @@ function populateDates(e) {
     let lastDayIndex = new Date(year, month + 1, 0).getDay();
     let amount_days = new Date(year, month + 1, 0).getDate();
     let nextDays = 6 - lastDayIndex;
-    console.log(firstDayIndex, prevLastDay);
 
     //prev_dates
     for (let x = firstDayIndex; x > 0; x--) {
@@ -165,7 +185,7 @@ function populateDates(e) {
 
             selected_date_element.textContent = selectedDate.toDateString();;
             selected_date_element.dataset.value = selectedDate;
-
+            populateTimes();
             populateDates();
         });
 
@@ -185,11 +205,23 @@ function populateDates(e) {
 
 function populateTimes(e) {
     times_element.innerHTML = '';
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 7; i++) {
         const time_element = document.createElement('span');
         time_element.classList.add('time');
-        time_element.classList.add('next_date');
+        if (count_d[selectedMonth][selectedDay - 1][i] == 1) {
+            time_element.classList.add('booked');
+        }
+        else {
+            time_element.classList.add('booked_n');
+        }
         time_element.textContent = times[i];
+
+        time_element.addEventListener('click', function () {
+            selectedTime = time_element.textContent;
+            selected_time_element.textContent = selectedTime;
+            selected_time_element.dataset.value = selectedTime;
+        });
+
         times_element.appendChild(time_element);
     }
 }

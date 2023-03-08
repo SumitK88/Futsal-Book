@@ -104,14 +104,13 @@ def date_list():
 def time_list():
     times=['09:00', '10:00', '11:00', '12:00', '1:00', '2:00', '3:00']
     c=[]
-    for j in range(1,13):
+    for j in range(0,12):
         c1=[]
-        for i in range(1,32):
+        for i in range(0,31):
             c2=[]
             for k in range(0,7):
                 c1.insert(k, Booking.objects.filter(date__day=i, date__month=j,time=times[k]).order_by('date').count())
             c2.insert(i, c1)
         c.insert(j, c2)
-    print(c)
     return c
     
