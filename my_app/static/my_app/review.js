@@ -5,7 +5,7 @@ const send_element = document.querySelector('.send_b');
 
 //EventListeners
 for (i in rating_element) {
-    rating_element.addEventListener('click', i => {
+    i.addEventListener('click', ()=>{
         i.classList.toggle('active');
         i.classList.toggle('clicked');
     });

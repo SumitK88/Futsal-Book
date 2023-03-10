@@ -6,6 +6,8 @@ from .models import player,Booking
 from django.contrib import messages
 from django.db.models import Count
 import datetime
+import matplotlib.pyplot as plt
+from sklearn.cluster import Kmeans
 # Create your views here.
 
 # @csrf_exempt
@@ -67,8 +69,9 @@ def profile(request):
 def booking(request):
     context={}
     if request.POST:
-        time_r=request.POST.get('time')
+        time_r=request.POST.get('time-picker')
         date_r=request.POST.get('date')
+        print(time_r,date_r)
         p_name_r=request.user.name
         form=bookingForm(p_name_r,date_r,time_r)
         if Booking.objects.filter(time=time_r,date=date_r):
@@ -81,11 +84,17 @@ def booking(request):
         return render(request,'my_app/booking.html',context)
         
     else:
+        context['day-chart']=d_chart()
+        context['week-chart']=w_chart()
         context['count']=date_list()
         context['t_count']=time_list()
         form=bookingForm()
         context['booking_form']=form
         return render(request,'my_app/booking.html',context)
+
+def d_chart():
+    context={}
+
 
 def booking_list(request):
     context={}

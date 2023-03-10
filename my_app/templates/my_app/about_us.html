@@ -1,20 +1,29 @@
-{% extends 'my_app/base.html' %}
-{% block content %}
-<div class="name"><h3>ABOUT US</h3></div>
-<br>
-<div class="container1">&nbsp;
-<p>
-our futsal booking system is a web-based platform that allows users to book futsal courts through online, eliminating the need 
-for physical booking or phone calls.
-system allows users to see the availability of the court
- in real-time and the booking through a secure online gateway.
-The system typically has a calendar view that displays
- the available date and timeslots for futsal court or pitch, 
-allowing players to select their preferred date and time.
-Users can make a reservation anytime, anywhere, without having 
-to visit the venue in person or spend time on the phone.
- Additionally, the system can help reduce double bookings,
- show no-availability and high-availability, and streamline the overall reservation process.</p>
+{% extends 'my_app/base.html' %} {% block content %}
+<div class="name1"><h3>ABOUT US</h3></div>
+<br />
 
+<div class="p_main" style="display: flex">
+  <div class="p1" style="word-wrap: break-word">
+    <p style="margin-left: 13px; margin-top: 40px">
+      Our futsal booking system is a web-based platform that allows users to
+      book futsal courts through online, eliminating the need for physical
+      booking or phone calls.Our system allows users to see the availability of
+      the court in real-time and the booking through a secure online gateway.The
+      system typically has a calendar view that displays the available date and
+      timeslots for futsal court or pitch,allowing players to select their
+      preferred date and time.Users can make a reservation anytime, anywhere,
+      without having to visit the venue in person or spend time on the phone.
+      Additionally, the system can help reduce double bookings, show
+      no-availability and high-availability, and streamline the overall
+      reservation process.
+    </p>
+  </div>
+
+  <div>
+    {% load static %}<img src="{% static "white.jpg" %}" class="clz-logo"
+    style=" width: 500px; height: 380px; margin-top: 4px;" alt="image not
+    loaded" />
+  </div>
 </div>
+
 {% endblock %}
