@@ -1,36 +1,46 @@
 {% extends 'my_app/base.html' %}
 {% block content %}
-{%load static%}
-    <div class="feedcontainer" id="feedcontainer">
-      <div class="feedcontainer2" id="feedcontainer2">
-        <h1 class="heading">REVIEW</h1>
-        <div class="ratings-container" id="ratings-container">
-          <div class="ratings" id="rati">
-            <img src="https://cdn-icons-png.flaticon.com/128/166/166527.png">
-            <small>Unhappy</small>
-          </div>
-
-          <div class="ratings">
-            <img src="https://cdn-icons-png.flaticon.com/128/1791/1791385.png">
-            <small>Neutral</small>
-          </div>
-
-          <div class="ratings">
-            <img src="https://cdn-icons-png.flaticon.com/128/166/166538.png">
-            <small>Satisfied</small>
-          </div>
+<section style="
+height: 85vh;
+display: flex;
+position: relative;
+justify-content: center;
+align-items: center;">
+  <div class="feedcontainer" id="feedcontainer">
+    <div class="feedcontainer2" id="feedcontainer2">
+      <h1 class="heading">REVIEW</h1>
+      
+      <div class="ratings-container" id="ratings-container">
+        <div class="ratings">
+          <img src="https://cdn-icons-png.flaticon.com/128/166/166527.png">
+          <small>Unhappy</small>
         </div>
-      <div class="rev" style="display:none;">
-        <input type="text"/>
+
+        <div class="ratings">
+          <img src="https://cdn-icons-png.flaticon.com/128/1791/1791385.png">
+          <small>Neutral</small>
+        </div>
+
+        <div class="ratings">
+          <img src="https://cdn-icons-png.flaticon.com/128/166/166538.png">
+          <small>Satisfied</small>
+        </div>
       </div>
-      <button class="btn send_b" id="btn">Send</button>
-      <div class="rev-suc" style="display:none;">
-        <div class="msgbox" style="text-align:center;" > 
+      <div class="rev">
+        <textarea cols="25" rows="4" name="revi"></textarea>
+      </div>
+      <button class="send_b butn">SEND</button>
+      
+      <dialog class="msgbox" > 
+        <form action="" method="post">
+          {% csrf_token %}
           Review Added
-        </div>
-      </div>
-    </div>
+        <button class="sent_b butn">OKAY</button>
+      </form>
+    </dialog>
     
-     </div>
-<script src="{% static "my_app/review.js" %}"></script>
+    </div>
+  </div>
+</section>
+{% load static %}<script src="{% static 'my_app/review.js' %}"></script>
 {% endblock %}

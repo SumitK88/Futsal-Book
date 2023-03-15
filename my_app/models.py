@@ -38,7 +38,7 @@ class player(AbstractBaseUser):
     email= models.EmailField (verbose_name= "email address", max_length= 60,unique = True )
     name=models.CharField (verbose_name="name", max_length=200, unique= True)
     phone=models.CharField (verbose_name="phone", max_length=15)
-    pimg=models.ImageField (verbose_name="pimg",upload_to="displaypic",default= "defaultpic.png",null=True, blank=True)
+    pimg=models.FileField (upload_to="displaypic/",default= None,null=True,max_length=250)
     is_admin=models.BooleanField (default= False)
     is_active=models.BooleanField (default= True)
     is_superuser=models.BooleanField (default= False)

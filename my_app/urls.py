@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from my_app.views import register,login_us,logout_us,home,contact_us,review,booking,about_us,profile,booking_list
+from my_app.views import register,login_us,logout_us,home,contact_us,review,booking,about_us,profile,booking_list,edit_profile
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('',home,name='home'),
@@ -29,4 +31,8 @@ urlpatterns = [
     path('booking_list/',booking_list,name="booking_list"),
     path('about_us/',about_us,name="about_us"),
     path('contact_us/',contact_us,name="contact_us"),
+    path('edit_profile/',edit_profile,name="edit_profile"),
 ]
+
+if settings.DEBUG:
+    urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

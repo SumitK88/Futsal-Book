@@ -5,9 +5,28 @@
 {% endblock %}
 {% block content %}
 
-  <div class="name"><h3>REGISTER</h3></div>
+  <section style="
+  height: 85vh;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;">
   <div class="container-main">
-    <form action="" method="POST">
+    
+    {% if reg_error%}
+    <div class="container" style="padding-top: 5%;">
+    <span class="msgbox" style="margin-left: 30%;">{{reg_error}}</span>
+    <div class="det" style="margin-top: 8%;">
+      Your password cant be too similar to your other personal information.<br><br>
+      Your password must contain at least 8 characters.<br><br>
+      Your password cant be a commonly used password.<br><br>Your password cant be entirely numeric.
+    </div>
+    <a href="/register"><button class="butn" style="background-color:skyblue; margin-top: 15%; margin-left:40%">Try Again</button></a>
+    </div>
+    {% else %}
+    <div class="heading"><h3>REGISTER </h3></div>
+    <br>
+    <form method="POST" enctype="multipart/form-data">
       {% csrf_token %}
         <div class="sub-container" style="flex-direction: column;">
           <div clas="cont" style="display: flex; ">
@@ -33,17 +52,21 @@
               {{register_form.password2}}
               <br><br>
               
-              <button class="btn btn-primary btn-success" style="background-color:skyblue">REGISTER</button>
+              <button class="butn" style="background-color:skyblue">REGISTER</button>
             </div>
           </div>
           <div style="margin-left:37.7%; margin-top:20px;">
-          {%if reg_error%}
-          <dailog class="msgbox" style="text-align:center;" > 
-              {{reg_error}}
-          </dialog> 
           {% endif %}
           </div>
         </div>
+        <!-- {{ register_form.as_p }}
+        <button class="butn" style="background-color:skyblue" type="submit">REGISTER</button>
+        {%if reg_error%}
+        <dailog openModal class="msgbox" > 
+            {{reg_error}}
+        </dialog> 
+        {% endif %} -->
     </form>
   </div>
+  </section>
 {% endblock %}

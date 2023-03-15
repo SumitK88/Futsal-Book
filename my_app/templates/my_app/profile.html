@@ -5,21 +5,35 @@
 {% endblock %}
 
 {% block content %}
-      <div class="card-body-main">
-        <div class="card-body">
-          <div class="photo">
-            <img src="{% static "profile.png" %}" class="rounded-circle" />
+<section style="
+height: 85vh;
+display: flex;
+position: relative;
+justify-content: center;
+align-items: center;">
+    <div class="sub-container" style="flex-direction: column;">
+      <div clas="cont" style="display: flex; ">
+        
+        <div class="half_form" style="width: 100%;"style="display: flex;justify-content: center;align-items: center;">
+          <div class="photo" >
+            <img src="{{request.user.pimg.url}}" class="rounded-circle" />
           </div>
-          <div class="about">
-            <h2>PROFILE</h2>
-            <br />
-            <div><b>Full Name</b><br> {{request.user.name}}</div>
-            <br />
-            <div><b>Email</b><br>{{request.user.email}}</div>
-            <br />
-            <div><b>Phone no.</b><br>{{request.user.phone}}</div>
-            <br />        
+        </div>
+          <div class="half_form_II">
+            <div class="about">
+              <h2 class="heading" style="margin-bottom:10px;">PROFILE</h2>
+              <div><b>Full Name</b><br> {{request.user.name}}</div>
+              <br />
+              <div><b>Email</b><br>{{request.user.email}}</div>
+              <br />
+              <div><b>Phone no.</b><br>{{request.user.phone}}</div>
+              <br />        
+              <div><b>Total Bookings</b><br>{{book_cnt}}</div>
+              <br />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+      </section>
 {% endblock %}

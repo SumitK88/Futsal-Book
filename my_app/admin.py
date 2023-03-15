@@ -5,7 +5,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 class playerAdmin(BaseUserAdmin):
     list_display=('email', 'name', 'phone','is_admin','is_active')
     search_fields=('email','name')
-    readonly_fields=('password','pimg')
+    readonly_fields=('password',)
     filter_horizontal=()
     list_filter=()
     fieldsets=()
@@ -13,7 +13,7 @@ class playerAdmin(BaseUserAdmin):
     add_fieldsets=(
         (None,{
             'classes':('wide'),
-            'fields':('email','name','phone','password1','password2'),
+            'fields':('email','name','phone','pimg','password1','password2'),
         }),
     )
     ordering=('name',)

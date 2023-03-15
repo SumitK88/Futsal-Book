@@ -1,11 +1,12 @@
 {% extends 'my_app/base.html' %}
+{% load static %}
 {% block content %}
-<div class="colzimg">
-    <div class="title">
-        {% comment %} <span class="acem">ACEM</span> {% endcomment %}
+    <div class="title" style="padding-top: 30px;">
+        <!-- <span class="acem">ACEM</span> -->
         <span class="futsal">futsal</span>
         <span class="sub-title">booking system</span>
     </div>
-    {% load static %}<img src="{% static "clz.webp" %}" class="clz-logo" alt="image not loaded" />
-</div>
+    <div>
+        <img src="{% static 'clz.webp' %}" class="clz-logo" style="width: 80vw; height: 65vh; margin-left: 10%; margin-top: 3%;"/>
+    </div>
 {% endblock %}

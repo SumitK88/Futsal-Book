@@ -4,27 +4,43 @@
 <link rel="stylesheet" href="{% static "my_app/new.css" %}" />
 {% endblock %}
 {% block content %}
-<div class="name"><h3>LOG IN </h3></div>
-    <div class="container" >
-      <div class="contain" style=" padding: 13%; margin-left: 15%;">
+<section style="
+height: 85vh;
+display: flex;
+position: relative;
+justify-content: center;
+align-items: center;">
+      {%if log_error%}
+    <div class="container" style="padding-top: 2.5%;" >
+
+             <sapn class="msgbox" style="margin-left: 20%;"> {{log_error}}</sapn>
+             <div><br><br>
+              Your email should be registered.<br><br>
+              Your email should be in proper form (eg: example@gmail.com).<br><br>
+              Check you password properly.<br>
+             </div>
+    <a href="/login"><button class="butn" style="background-color:skyblue; margin-top: 15%; margin-left:40%">Try Again</button></a>
+</div>
+        {% else %}
+<div class="container" >
+<div class="heading" style="margin-bottom: 40px; margin-top: 20px;"><h3>LOGIN </h3></div>
+
+      <div class="contain" style=" position: relative;">
         <form action="" method='post'>
             {% csrf_token %}
-            <div class="half_form">
+            <div class="half_form" style="left:35%;top:50%;">
             <label for="email">Email:</label><br>
             {{login_form.email}}
             <br><br>
              <label for="password">Password:</label><br>
             {{login_form.password}}
             <br><br>
-            <button class="btn btn-primary brn-sucess" style="background-color:skyblue">Log In</button>
+            <button class="butn">LOGIN</button>
         </form>
       </div>
       <div style="margin-top:17px;">
-      {%if log_error%}
-          <dailog class="msgbox" style="text-align:center;" > 
-              {{log_error}}
-          </dialog> 
-        {% endif %}
+      {% endif %}
       </div>
     </div>
+    </section>
 {% endblock %}

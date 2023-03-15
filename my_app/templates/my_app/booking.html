@@ -4,14 +4,38 @@
 <link rel="stylesheet" href="{% static "my_app/new.css" %}" />
 {% endblock %}
 {% block content %}
+<section style="
+height: 85vh;
+display: flex;
+position: relative;
+justify-content: center;
+align-items: center;">
+	<div>
+<iframe src="{% static "my_app/day.html" %}" height='455' width='600'></iframe>
+</div>
 <div class="booking">
+	{%if error%}
+	<dialog open style="
+	height: 45vh;
+	width:600px;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	justify-content: center;
+	align-items: center;">
+		<h3 class="heading">{{ error }}</h3><br><br>
+		<a href="/booking"><button class="butn" >BOOK MORE</button></a>
+	</dialog>
+	{% else %}
+	<h1 class="heading" style="margin-top: 20px;">BOOKING</h1>
     <div class="b_form">
         <form method="post" action=''>
         {%csrf_token%}
 		&nbsp;
 		<div class="date-time">
             <div class="date-picker">
-		        <div class="selected-date" name="date"></div>
+			<label>SELECT DATE:</label>
+			<input class="selected-date" name="date" type="text" onkeydown="return false;"></input>
 		        <div class="dates">
 			        <div class="month">
 				        <div class="arrows prev-mth">&lt;</div>
@@ -19,23 +43,38 @@
 				        <div class="arrows next-mth">&gt;</div>
 			        </div>
 			        <div class="days"></div>
-					<div class="search_date btn bt-success" type="button" style="width: 20%;">OK</div>
+					<div class="search_date butn" type="button" style="width:40px;margin-left: 120px;"> OK</div>
+					<div class="display:flex;"> 
+						<div class="ava" style="background-color: green;"></div><div>High Availability</div><br>
+						<div class="ava" style="background-color: yellow;"></div><div>Low Availability</div><br>
+						<div class="ava" style="background-color: red;"></div><div>No Availability</div><br>
+					</div>
 		        </div>
             </div>
+			<br>
 			<div class="time-picker" name="time-picker">
-				<div class="selected-time" name="time"></div>
+				<label>SELECT TIME:</label>
+				<input class="selected-time" name="time" type="text" onkeydown="return false;"></input>
 				<div class="time-slot" >
 					<div class="times">
 					</div>
-						<div class="search_time btn bt-success" type="button" style="width: 20%;">OK</div>
+					<div class="search_time butn" type="button" style="width:40px;margin-left: 120px;">OK </div>
+
 				</div>
 			</div>
+
 		</div>
-		<button class="btn btn-sucess form_submit" style="margin-top: 18%; margin-left: 42%; width: 17%;">SUBMIT</button>
+		<button class="butn form_submit" style=" margin-left: 42%;margin-top: 30px; width: 17%;">SUBMIT</button>
+
         </form>
         <div id='cnt' style='display:none;'>{{count|safe}}</div>
         <div id='cnt_d' style='display:none;'>{{t_count|safe}}</div>
     </div>
+	{% endif %}
 </div>
+<div>
+<iframe src="{% static "my_app/week.html" %}" height='455' width='600'></iframe>
+</div>
+</section>
 <script src="{% static "my_app/main.js" %}"></script>
 {% endblock %}

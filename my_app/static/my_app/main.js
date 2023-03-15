@@ -35,69 +35,54 @@ const months = [
   "December",
 ];
 const days_w = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-const times = ["09:00", "10:00", "11:00", "12:00", "1:00", "2:00", "3:00"];
-
+const times = ["09:00:00", "10:00:00", "11:00:00", "12:00:00", "1:00:00", "2:00:00", "3:00:00"];
 //Getting Counter for each month
+function cnt_mnth(){
 let cnt_list = document.querySelector("#cnt").innerHTML;
-let num = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-  cr = 0,
-  c = [],
-  count = [];
-for (let i = 0; i < 1141; i++) {
-  cl = cnt_list[i];
-  if (cl in num) {
-    if (cr > 30) {
-      cr = cr - 31;
-      count.push(c);
-      c = [];
-      c.push(cl);
-    } else {
-      c.push(cl);
-    }
-    cr++;
-  }
+count=cnt_list.split("[").join(',').split("]").join(",").split(" ").join(",").split(",,");
+console.log(count);
 }
-count.push(c);
-
+// let count_d=[];
 //Getting Counter for each day
-let cnt_d_list = document.querySelector("#cnt_d").innerHTML;
-let n = [0, 1],
-  cr_d = 0,
-  c_d = [],
-  count_d = [],
-  ct_c = 0,
-  c_d_d = [];
-for (let j = 1; j < cnt_d_list.length; j = j + 655) {
-  k = j + 655;
-  let cnt = [];
-  for (i = j; i <= k; i++) {
-    let cl_d = cnt_d_list[i];
-    if (cl_d in n) {
-      if (cr_d > 29) {
-        if (ct_c > 6) {
-          cr_d = cr_d - 30;
-          ct_c = ct_c - 7;
-          c_d.push(c_d_d);
-          c_d_d = [];
-          c_d = [];
-        }
-        c_d_d.push(cl_d);
-      } else {
-        if (ct_c > 6) {
-          ct_c = ct_c - 7;
-          cr_d++;
-          c_d.push(c_d_d);
-          c_d_d = [];
-        }
-        c_d_d.push(cl_d);
-      }
-      ct_c++;
-    }
-  }
-  count_d.push(c_d);
-}
-console.log(count_d);
-
+// function cnt_day(){
+//   let cnt_d_list = document.querySelector("#cnt_d").innerHTML;
+//   let n = [0, 1],
+//     cr_d = 0,
+//     c_d = [],
+//     ct_c = 0,
+//     c_d_d = [];
+//   count_d = [];
+//   for (let j = 1; j < cnt_d_list.length; j = j + 655) {
+//     k = j + 655;
+//     let cnt = [];
+//     for (i = j; i <= k; i++) {
+//       let cl_d = cnt_d_list[i];
+//       if (cl_d in n) {
+//         if (cr_d > 29) {
+//           if (ct_c > 6) {
+//             cr_d = cr_d - 30;
+//             ct_c = ct_c - 7;
+//             c_d.push(c_d_d);
+//             c_d_d = [];
+//             c_d = [];
+//           }
+//           c_d_d.push(cl_d);
+//         } else {
+//           if (ct_c > 6) {
+//             ct_c = ct_c - 7;
+//             cr_d++;
+//             c_d.push(c_d_d);
+//             c_d_d = [];
+//           }
+//           c_d_d.push(cl_d);
+//         }
+//         ct_c++;
+//       }
+//     }
+//     count_d.push(c_d);
+//   }
+//   console.log(count_d);
+// }
 //setting date
 let date = new Date();
 let day = date.getDate();
@@ -115,18 +100,18 @@ if (selectedTime > 12) {
   selectedTime = selectedTime - 12;
 }
 mth_element.textContent = months[month] + " " + year;
-
-selected_time_element.textContent = selectedTime + 1 + ":00";
-selected_date_element.textContent =
+selectedTime++
+selected_time_element.value = selectedTime + ":00:00";
+selected_date_element.value =
   selectedDate.getDate() +
-  "-" +
+  "/" +
   selectedDate.getMonth() +
-  "-" +
+  "/" +
   selectedDate.getFullYear();
-selected_date_element.dataset.value = selected_date_element.textContent;
+selected_date_element.dataset.value = selected_date_element.value;
 
-if (!(selected_time_element.textContent in times)) {
-  selected_time_element.textContent = "9:00";
+if (!(selected_time_element.value in times)) {
+  selected_time_element.value = "9:00:00";
 }
 
 populateDates();
@@ -139,13 +124,20 @@ next_mth_element.addEventListener("click", goToNextMonth);
 prev_mth_element.addEventListener("click", goToPrevMonth);
 s_time_element.addEventListener("click", toggleTimePicker);
 s_date_element.addEventListener("click", toggleDatePicker);
+s_date_element.addEventListener("click", addTimePicker);
 
 // FUNCTIONS
 function toggleTimePicker(e) {
   time_slot_element.classList.toggle("activate");
 }
+function addTimePicker(e) {
+  populateTimes();
+  time_picker_element.classList.add("activated");
+}
 function toggleDatePicker(e) {
   dates_element.classList.toggle("active");
+  time_picker_element.classList.remove("activated");
+
 }
 function goToNextMonth(e) {
   if (year >= 2023 && month >= 11) {
@@ -159,6 +151,7 @@ function goToNextMonth(e) {
     }
     mth_element.textContent = months[month] + " " + year;
     populateDates();
+    populateTimes();
   }
 }
 
@@ -174,10 +167,12 @@ function goToPrevMonth(e) {
     }
     mth_element.textContent = months[month] + " " + year;
     populateDates();
+    populateTimes();
   }
 }
 
 function populateDates(e) {
+  cnt_mnth();
   days_element.innerHTML = "";
   let prevLastDay = new Date(year, month, 0).getDate();
   let firstDayIndex = new Date(year, month).getDay();
@@ -200,9 +195,9 @@ function populateDates(e) {
     day_element.classList.add("day");
     day_element.textContent = i;
 
-    if (count[month][i - 1] <= 2) {
+    if (count[(month*32)+i] <= 2) {
       day_element.classList.add("high_available");
-    } else if (count[month][i - 1] <= 4 && count[month][i - 1] > 2) {
+    } else if (count[(month*32)+i] <= 6 && count[(month*32)+i] > 2) {
       day_element.classList.add("med_available");
     } else {
       day_element.classList.add("low_available");
@@ -218,13 +213,13 @@ function populateDates(e) {
       selectedMonth = month;
       selectedYear = year;
 
-      selected_date_element.textContent =
+      selected_date_element.value =
         selectedDate.getDate() +
         "/" +
         selectedDate.getMonth() +
         "/" +
         selectedDate.getFullYear();
-      selected_date_element.dataset.value = selected_date_element.textContent;
+      selected_date_element.dataset.value = selected_date_element.value;
       populateTimes();
       populateDates();
     });
@@ -243,26 +238,29 @@ function populateDates(e) {
 }
 
 function populateTimes(e) {
+  // cnt_day();
   times_element.innerHTML = "";
-  for (let i = 0; i < 7; i++) {
+  for (let i = 1; i < 8; i++) {
     const time_element = document.createElement("div");
     time_element.classList.add("time");
 
-    // if (selectedTime == times[i]) {
-    //   time_element.classList.add("selected");
-    // }
-
-    if (count_d[selectedMonth][selectedDay - 1][i] == 1) {
-      time_element.classList.add("booked");
-    } else {
-      time_element.classList.add("booked_n");
+    if (selected_time_element.value == times[i-1]) {
+      time_element.classList.add("selected");
     }
-    time_element.textContent = times[i];
+
+    // if (count_d[selectedMonth][30-selectedDay][7-i] == 1) {
+    //   time_element.classList.add("booked");
+    // } else {
+    //   time_element.classList.add("booked_n");
+    // }
+    time_element.textContent = times[i-1];
 
     time_element.addEventListener("click", function () {
       selectedTime = time_element.textContent;
-      selected_time_element.textContent = selectedTime;
+      selected_time_element.value = selectedTime;
       selected_time_element.dataset.value = selectedTime;
+
+      populateTimes();
     });
 
     times_element.appendChild(time_element);

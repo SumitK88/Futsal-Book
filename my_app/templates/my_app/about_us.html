@@ -1,29 +1,29 @@
 {% extends 'my_app/base.html' %} {% block content %}
-<div class="name1"><h3>ABOUT US</h3></div>
-<br />
-
-<div class="p_main" style="display: flex">
-  <div class="p1" style="word-wrap: break-word">
-    <p style="margin-left: 13px; margin-top: 40px">
-      Our futsal booking system is a web-based platform that allows users to
-      book futsal courts through online, eliminating the need for physical
-      booking or phone calls.Our system allows users to see the availability of
-      the court in real-time and the booking through a secure online gateway.The
-      system typically has a calendar view that displays the available date and
-      timeslots for futsal court or pitch,allowing players to select their
-      preferred date and time.Users can make a reservation anytime, anywhere,
-      without having to visit the venue in person or spend time on the phone.
-      Additionally, the system can help reduce double bookings, show
-      no-availability and high-availability, and streamline the overall
-      reservation process.
-    </p>
-  </div>
-
-  <div>
-    {% load static %}<img src="{% static "white.jpg" %}" class="clz-logo"
-    style=" width: 500px; height: 380px; margin-top: 4px;" alt="image not
-    loaded" />
-  </div>
+<div class="heading" style="margin-top: 30px;"><h3>ABOUT US</h3></div>
+<hr style="border-width: 2.5px;">
+<br>
+<div style="position:relative; margin-top: 40px;">
+    <div class="bdy" style="position:absolute;left: 4%;max-width:50%;;width: 100%;">
+      <div class="clzz">
+        <p style="margin-left: 13px; margin-top: 40px">
+          Our futsal booking system is a web-based platform that allows users to
+          book futsal courts through online, eliminating the need for physical
+          booking or phone calls.Our system allows users to see the availability of
+          the court in real-time and the booking through a secure online gateway.The
+          system typically has a calendar view that displays the available date and
+          timeslots for futsal court or pitch,allowing players to select their
+          preferred date and time.Users can make a reservation anytime, anywhere,
+          without having to visit the venue in person or spend time on the phone.
+          Additionally, the system can help reduce double bookings, show
+          no-availability and high-availability, and streamline the overall
+          reservation process.
+        </p>
+      </div><br>
+      <div>
+        {% load static %}<img src="{% static "white.jpg" %}" class="clz-logo"
+        style=" width: 600px; height: 380px; position:absolute;left: 115%;" alt="image not
+        loaded" />
+      </div>
+    <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14131.217707839352!2d85.28259279999999!3d27.6924389!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb198d9284b605%3A0xdeff9faa80d88afb!2sAdvanced%20College%20of%20Engineering%20Management!5e0!3m2!1sen!2snp!4v1674291132459!5m2!1sen!2snp" width="800" height="400" style="border:0;position:absolute;left: 80%;"  loading="lazy" referrerpolicy="no-referrer-when-downgrade" id="maps"></iframe>   -->
 </div>
-
 {% endblock %}
