@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate
 from my_app.models import player,Booking
 
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+
 class PlayerCreationForm(UserCreationForm):
     class Meta:
         model=player

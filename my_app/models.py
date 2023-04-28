@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,BaseUserManager
-
+from django.core.validators import MinLengthValidator
 class playerManager(BaseUserManager):
     def create_user(self,email,name,phone,pimg,password=None):
         if not email:
@@ -37,8 +37,8 @@ class playerManager(BaseUserManager):
 class player(AbstractBaseUser):
     email= models.EmailField (verbose_name= "email address", max_length= 60,unique = True )
     name=models.CharField (verbose_name="name", max_length=200, unique= True)
-    phone=models.CharField (verbose_name="phone", max_length=15)
-    pimg=models.FileField (upload_to="displaypic/",default= None,null=True,max_length=250)
+    phone=models.CharField (verbose_name="phone", max_length=10, validators=[MinLengthValidator(10)])
+    pimg=models.FileField (upload_to="displaypic/",default= 'defaultpic.png',null=True,max_length=250)
     is_admin=models.BooleanField (default= False)
     is_active=models.BooleanField (default= True)
     is_superuser=models.BooleanField (default= False)
@@ -58,9 +58,10 @@ class player(AbstractBaseUser):
         return True
         
 class Booking(models.Model):
-    p_name=models.CharField(verbose_name='p_name',max_length=100, blank=True)
+    player=models.ForeignKey(player,on_delete=models.CASCADE)
     time=models.TimeField(verbose_name='time', blank=True)
     date=models.DateField(verbose_name='date', blank=True)
+    bokked_d=models.DateTimeField(verbose_name='booked_d',null=True)
     
     def __str__(self) :
-        return self.p_name
+        return self.player.name

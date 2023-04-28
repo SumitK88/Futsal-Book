@@ -196,6 +196,7 @@ body {
   padding:7px;
   color: white;
   font-family: sans sans-serif;
+  overflow: hidden;
 }
  .butn:hover{
   background-color: whitesmoke;
@@ -237,6 +238,7 @@ body {
   align-items: center;
   background-color: aliceblue;
   border-radius: 10px;
+  overflow: hidden;
 }
 
 .rounded-circle {
@@ -249,7 +251,6 @@ body {
 
 .about {
   margin-left: 20%;
-  margin-top: 5px;
   font-family: sans-serif;
 }
 

@@ -68,7 +68,7 @@ def about_us(request):
 
 def profile(request):
     context={}
-    context['book_cnt']=Booking.objects.all().filter(p_name=request.user.name).count()
+    context['book_cnt']=Booking.objects.all().filter(player=request.user).count()
     return render(request,'my_app/profile.html',context)
 
 def booking(request):
@@ -80,13 +80,15 @@ def booking(request):
         time_string=request.POST.get('time')
         date_r=datetime.strptime(date_string, '%d/%m/%Y').date()
         time_r=datetime.strptime(time_string, '%H:%M:%S').time()
-        p_name_r=request.user.name
-        form=bookingForm(p_name_r,date_r,time_r)
+        player_r=request.user
+        bokked_d_r=datetime.now()
+        print(bokked_d_r)
+        form=bookingForm(player_r,date_r,time_r,bokked_d_r)
         if Booking.objects.filter(time=time_r,date=date_r):
             context['error']="ALREADY BOOKED"
             return render(request,'my_app/booking.html',context)
         if form is not None:
-            Booking.objects.create(time=time_r, date=date_r,p_name=p_name_r)
+            Booking.objects.create(time=time_r, date=date_r,player=player_r,bokked_d=bokked_d_r)
             context['error']="<-- YOUR BOOKING IS SUCCESSFUL -->"
         context['booking_form']=form
         return render(request,'my_app/booking.html',context)
@@ -125,7 +127,7 @@ def w_chart():
 
 def booking_list(request):
     context={}
-    context['books']=Booking.objects.all().filter(p_name=request.user.name).order_by('-date')
+    context['books']=Booking.objects.all().filter(player=request.user).order_by('-bokked_d')
     return render(request,'my_app/booking_list.html',context)
 
 def date_list():
@@ -148,7 +150,6 @@ def time_list():
                 c1.insert(k, Booking.objects.filter(date__day=i, date__month=j,time=times[k-1]).order_by('date').count())
             c2.insert(i, c1)
         c.insert(j, c2)
-    print(c)
     return c
 
 def edit_profile(request):

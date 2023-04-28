@@ -9,10 +9,11 @@
     margin-left:0px;
     height:auto;
   ">
-  <thead ">
+  <thead>
     <tr>
+        <th scope="col">Booking made on</th>
         <th scope="col">Name</th>
-        <th scope="col">Date</th>
+        <th scope="col">Booked For</th>
         <th scope="col">Time</th>
     </tr>
   </thead>
@@ -20,7 +21,8 @@
   {% for b in books %}
   <trbody></trbody>
     <tr>
-        <th scope="row">{{b.p_name}}</th>
+        <th scope="row">{{b.bokked_d.date}}</th>
+        <th>{{b.player}}</th>
         <td>{{b.date}}</td>
         <td>{{b.time}}</td>
     </tr>

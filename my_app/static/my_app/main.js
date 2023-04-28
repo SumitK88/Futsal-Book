@@ -36,53 +36,13 @@ const months = [
 ];
 const days_w = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const times = ["09:00:00", "10:00:00", "11:00:00", "12:00:00", "1:00:00", "2:00:00", "3:00:00"];
+
 //Getting Counter for each month
 function cnt_mnth(){
 let cnt_list = document.querySelector("#cnt").innerHTML;
 count=cnt_list.split("[").join(',').split("]").join(",").split(" ").join(",").split(",,");
-console.log(count);
 }
-// let count_d=[];
-//Getting Counter for each day
-// function cnt_day(){
-//   let cnt_d_list = document.querySelector("#cnt_d").innerHTML;
-//   let n = [0, 1],
-//     cr_d = 0,
-//     c_d = [],
-//     ct_c = 0,
-//     c_d_d = [];
-//   count_d = [];
-//   for (let j = 1; j < cnt_d_list.length; j = j + 655) {
-//     k = j + 655;
-//     let cnt = [];
-//     for (i = j; i <= k; i++) {
-//       let cl_d = cnt_d_list[i];
-//       if (cl_d in n) {
-//         if (cr_d > 29) {
-//           if (ct_c > 6) {
-//             cr_d = cr_d - 30;
-//             ct_c = ct_c - 7;
-//             c_d.push(c_d_d);
-//             c_d_d = [];
-//             c_d = [];
-//           }
-//           c_d_d.push(cl_d);
-//         } else {
-//           if (ct_c > 6) {
-//             ct_c = ct_c - 7;
-//             cr_d++;
-//             c_d.push(c_d_d);
-//             c_d_d = [];
-//           }
-//           c_d_d.push(cl_d);
-//         }
-//         ct_c++;
-//       }
-//     }
-//     count_d.push(c_d);
-//   }
-//   console.log(count_d);
-// }
+
 //setting date
 let date = new Date();
 let day = date.getDate();
@@ -238,7 +198,6 @@ function populateDates(e) {
 }
 
 function populateTimes(e) {
-  // cnt_day();
   times_element.innerHTML = "";
   for (let i = 1; i < 8; i++) {
     const time_element = document.createElement("div");
@@ -247,12 +206,6 @@ function populateTimes(e) {
     if (selected_time_element.value == times[i-1]) {
       time_element.classList.add("selected");
     }
-
-    // if (count_d[selectedMonth][30-selectedDay][7-i] == 1) {
-    //   time_element.classList.add("booked");
-    // } else {
-    //   time_element.classList.add("booked_n");
-    // }
     time_element.textContent = times[i-1];
 
     time_element.addEventListener("click", function () {

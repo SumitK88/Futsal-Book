@@ -19,8 +19,8 @@ class playerAdmin(BaseUserAdmin):
     ordering=('name',)
 
 class bookingAdmin(BaseUserAdmin):
-    list_display=('p_name','time','date')
-    search_fields=('p_name','time','date')
+    list_display=('bokked_d','player','time','date')
+    search_fields=('time','date','player__name','bokked_d')
     readonly_fields=('time','date')
     filter_horizontal=()
     list_filter=()
@@ -29,10 +29,10 @@ class bookingAdmin(BaseUserAdmin):
     add_fieldsets=(
         (None,{
             'classes':('wide'),
-            'fields':('p_name','time','date'),
+            'fields':('bokked_d','player','time','date'),
         }),
     )
-    ordering=('p_name',)
+    ordering=('bokked_d',)
 
 admin.site.register(player,playerAdmin)
 admin.site.register(Booking,bookingAdmin)
