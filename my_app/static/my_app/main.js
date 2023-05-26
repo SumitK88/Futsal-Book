@@ -45,7 +45,7 @@ count=cnt_list.split("[").join(',').split("]").join(",").split(" ").join(",").sp
 }
 
 //Getting Counter for each day
-function cnt_day(){
+function count_day(){
 let counted_list = document.querySelector("#counted").innerHTML;
 counted=counted_list.split("[").join(',').split("]").join(",").split(" ").join(",").split(",,").join(",").split(",,").join(",").split(",");
 }
@@ -203,7 +203,7 @@ function populateDates(e) {
 }
 
 function populateTimes(e) {
-  cnt_day();
+  count_day();
   times_element.innerHTML = "";
   for (let i = 1; i < 8; i++) {
     const time_element = document.createElement("div");
