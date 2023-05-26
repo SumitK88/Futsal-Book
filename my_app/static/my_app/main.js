@@ -41,6 +41,13 @@ const times = ["09:00:00", "10:00:00", "11:00:00", "12:00:00", "1:00:00", "2:00:
 function cnt_mnth(){
 let cnt_list = document.querySelector("#cnt").innerHTML;
 count=cnt_list.split("[").join(',').split("]").join(",").split(" ").join(",").split(",,");
+
+}
+
+//Getting Counter for each day
+function cnt_day(){
+let counted_list = document.querySelector("#counted").innerHTML;
+counted=counted_list.split("[").join(',').split("]").join(",").split(" ").join(",").split(",,").join(",").split(",,").join(",").split(",");
 }
 
 //setting date
@@ -154,7 +161,6 @@ function populateDates(e) {
     const day_element = document.createElement("div");
     day_element.classList.add("day");
     day_element.textContent = i;
-
     if (count[(month*32)+i] <= 2) {
       day_element.classList.add("high_available");
     } else if (count[(month*32)+i] <= 6 && count[(month*32)+i] > 2) {
@@ -183,7 +189,6 @@ function populateDates(e) {
       populateTimes();
       populateDates();
     });
-
     days_element.appendChild(day_element);
   }
 
@@ -198,11 +203,14 @@ function populateDates(e) {
 }
 
 function populateTimes(e) {
+  cnt_day();
   times_element.innerHTML = "";
   for (let i = 1; i < 8; i++) {
     const time_element = document.createElement("div");
     time_element.classList.add("time");
-
+    if(counted[(month*31*7)+(((selectedDay-1)*7)+i)]==1){
+      time_element.classList.add("already_booked");
+    }
     if (selected_time_element.value == times[i-1]) {
       time_element.classList.add("selected");
     }

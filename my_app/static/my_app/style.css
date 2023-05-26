@@ -313,6 +313,12 @@ body {
   color: #fff;
 }
 
+.time-picker .time-slot .times .time.already_booked {
+  background-color: #5454549d;
+  color: #fff;
+  pointer-events: none;
+}
+
 .time-picker .time-slot .times .time:hover {
   background-color: #8ce6a1;
   color: #fff;
@@ -429,15 +435,6 @@ body {
   align-items: center;
   color: #313131;
   border: 1px solid hsl(0, 0%, 0%);
-}
-
-.time-picker .time-slot .times .time.booked {
-  pointer-events: none;
-  border-bottom: 3px solid rgb(110, 112, 112);
-}
-
-.time-picker .time-slot .times .time.booked_n {
-  border-bottom: 3px solid rgb(33, 205, 33);
 }
 
 .date-picker .dates .days .day.selected {

@@ -1,8 +1,5 @@
 {% extends 'my_app/base.html' %}
-{% block head %}
 {%load static%}
-<link rel="stylesheet" href="{% static "my_app/new.css" %}" />
-{% endblock %}
 {% block content %}
 <section style="
 height: 85vh;
@@ -68,7 +65,7 @@ align-items: center;">
 
         </form>
         <div id='cnt' style='display:none;'>{{count|safe}}</div>
-        <div id='cnt_d' style='display:none;'>{{t_count|safe}}</div>
+        <div id='counted' style='display:none;'>{{t_count|safe}}</div>
     </div>
 	{% endif %}
 </div>
@@ -76,5 +73,5 @@ align-items: center;">
 <iframe src="{% static "my_app/week.html" %}" height='455' width='600'></iframe>
 </div>
 </section>
-<script src="{% static "my_app/main.js" %}"></script>
+<script src="{% static 'my_app/main.js' %}"></script>
 {% endblock %}
